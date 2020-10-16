@@ -1,4 +1,4 @@
-// Generated using Sourcery 0.17.0 — https://github.com/krzysztofzablocki/Sourcery
+// Generated using Sourcery 0.18.0 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
 
 /// The rule list containing all available rules built into SwiftLint.
@@ -162,6 +162,7 @@ public let masterRuleList = RuleList(rules: [
     SwitchCaseAlignmentRule.self,
     SwitchCaseOnNewlineRule.self,
     SyntacticSugarRule.self,
+    TestCaseAccessibilityRule.self,
     TodoRule.self,
     ToggleBoolRule.self,
     TrailingClosureRule.self,

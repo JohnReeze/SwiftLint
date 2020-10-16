@@ -1,7 +1,7 @@
 import Foundation
 import SourceKittenFramework
 
-private typealias FileCacheKey = Int
+private typealias FileCacheKey = UUID
 private var responseCache = Cache({ file -> [String: SourceKitRepresentable]? in
     do {
         return try Request.editorOpen(file: file.file).sendIfNotDisabled()
@@ -31,6 +31,9 @@ private var syntaxKindsByLinesCache = Cache({ file in file.syntaxKindsByLine() }
 private var syntaxTokensByLinesCache = Cache({ file in file.syntaxTokensByLine() })
 
 internal typealias AssertHandler = () -> Void
+// Re-enable once all parser diagnostics in tests have been addressed.
+// https://github.com/realm/SwiftLint/issues/3348
+internal var parserDiagnosticsDisabledForTests = false
 
 private var assertHandlers = [FileCacheKey: AssertHandler]()
 private var assertHandlerCache = Cache({ file in assertHandlers[file.cacheKey] })
@@ -123,6 +126,22 @@ extension SwiftLintFile {
         set {
             assertHandlerCache.set(key: cacheKey, value: newValue)
         }
+    }
+
+    internal var parserDiagnostics: [[String: SourceKitRepresentable]]? {
+        if parserDiagnosticsDisabledForTests {
+            return nil
+        }
+
+        guard let response = responseCache.get(self) else {
+            if let handler = assertHandler {
+                handler()
+                return nil
+            }
+            queuedFatalError("Never call this for file that sourcekitd fails.")
+        }
+
+        return response["key.diagnostics"] as? [[String: SourceKitRepresentable]]
     }
 
     internal var structure: Structure {

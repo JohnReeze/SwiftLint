@@ -9,8 +9,80 @@
 * None.
 
 #### Enhancements
+* Add `use-alternative-excluding` option to speed up cases described [here](https://github.com/realm/SwiftLint/pull/3325).<br/>
+  [JohnReeze](https://github.com/JohnReeze)
+  [#3304](https://github.com/realm/SwiftLint/issues/3304)
+
+* Add `test_case_accessibility` rule.  
+  [Keith Smiley](https://github.com/keith)
+  [#3376](https://github.com/realm/SwiftLint/issues/3376)
+
+#### Bug Fixes
+
+* Fix parsing of Xcode 12 compiler logs for analyzer rules.  
+  [JP Simard](https://github.com/jpsim)
+  [#3365](https://github.com/realm/SwiftLint/issues/3365)
+
+* Fix some SwiftUI unused declaration rule false positives.  
+  [JP Simard](https://github.com/jpsim)
+  [#3365](https://github.com/realm/SwiftLint/issues/3365)
+
+* Fix some false positives in rule `explicit_self`.  
+  [Sven Münnich](https://github.com/svenmuennich)
+
+## 0.40.3: Greased Up Drum Bearings
+
+#### Breaking
 
 * None.
+
+#### Experimental
+
+* None.
+
+#### Enhancements
+
+* Make the `unused_declaration` rule run 3-5 times faster, and
+  enable it to detect more occurrences of unused declarations.  
+  [JP Simard](https://github.com/jpsim)
+
+* Remove unneeded internal locking overhead, leading to increased
+  performance in multithreaded operations.  
+  [JP Simard](https://github.com/jpsim)
+
+* Skip correcting file if the swift parser reports a warning or an
+  error.  
+  [JP Simard](https://github.com/jpsim)
+  [#3343](https://github.com/realm/SwiftLint/issues/3343)
+
+#### Bug Fixes
+
+* Rule `unused_capture_list` should not be triggered by self keyword.  
+  [hank121314](https://github.com/hank121314)
+  [#2367](https://github.com/realm/SwiftLint/issues/3267)
+
+* Rule `multiple_closures_with_trailing_closure` no longer triggers when Swift
+  5.3's 'multiple trailing closures' feature is used.
+  [Jumhyn](https://github.com/jumhyn)
+  [#3295](https://github.com/realm/SwiftLint/issues/3295)
+
+## 0.40.2: Demo Unit
+
+#### Breaking
+
+* None.
+
+#### Experimental
+
+* None.
+
+#### Enhancements
+
+* Improve description for `empty_enum_arguments`.  
+  [Lukas Schmidt](https://github.com/lightsprint09)
+
+* Add support for `excluded_match_kinds` custom rule config parameter.  
+  [Ryan Demo](https://github.com/ryandemo)
 
 #### Bug Fixes
 

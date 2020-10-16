@@ -1,4 +1,4 @@
-// Generated using Sourcery 0.17.0 — https://github.com/krzysztofzablocki/Sourcery
+// Generated using Sourcery 0.18.0 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
 
 @testable import SwiftLintFrameworkTests
@@ -191,6 +191,12 @@ extension ConfigurationTests {
         ("testForceExcludesDirectoryThatIsNotInExcludedButHasChildrenThatAre", testForceExcludesDirectoryThatIsNotInExcludedButHasChildrenThatAre),
         ("testLintablePaths", testLintablePaths),
         ("testGlobExcludePaths", testGlobExcludePaths),
+        ("testExcludeByPrefixExcludedPaths", testExcludeByPrefixExcludedPaths),
+        ("testExcludeByPrefixForceExcludesFile", testExcludeByPrefixForceExcludesFile),
+        ("testExcludeByPrefixForceExcludesFileNotPresentInExcluded", testExcludeByPrefixForceExcludesFileNotPresentInExcluded),
+        ("testExcludeByPrefixForceExcludesDirectory", testExcludeByPrefixForceExcludesDirectory),
+        ("testExcludeByPrefixForceExcludesDirectoryThatIsNotInExcludedButHasChildrenThatAre", testExcludeByPrefixForceExcludesDirectoryThatIsNotInExcludedButHasChildrenThatAre),
+        ("testExcludeByPrefixGlobExcludePaths", testExcludeByPrefixGlobExcludePaths),
         ("testIsEqualTo", testIsEqualTo),
         ("testIsNotEqualTo", testIsNotEqualTo),
         ("testCustomConfiguration", testCustomConfiguration),
@@ -255,8 +261,10 @@ extension ConvenienceTypeRuleTests {
 
 extension CustomRulesTests {
     static var allTests: [(String, (CustomRulesTests) -> () throws -> Void)] = [
-        ("testCustomRuleConfigurationSetsCorrectly", testCustomRuleConfigurationSetsCorrectly),
+        ("testCustomRuleConfigurationSetsCorrectlyWithMatchKinds", testCustomRuleConfigurationSetsCorrectlyWithMatchKinds),
+        ("testCustomRuleConfigurationSetsCorrectlyWithExcludedMatchKinds", testCustomRuleConfigurationSetsCorrectlyWithExcludedMatchKinds),
         ("testCustomRuleConfigurationThrows", testCustomRuleConfigurationThrows),
+        ("testCustomRuleConfigurationMatchKindAmbiguity", testCustomRuleConfigurationMatchKindAmbiguity),
         ("testCustomRuleConfigurationIgnoreInvalidRules", testCustomRuleConfigurationIgnoreInvalidRules),
         ("testCustomRules", testCustomRules),
         ("testLocalDisableCustomRule", testLocalDisableCustomRule),
@@ -1089,6 +1097,13 @@ extension OverrideInExtensionRuleTests {
     ]
 }
 
+extension ParserDiagnosticsTests {
+    static var allTests: [(String, (ParserDiagnosticsTests) -> () throws -> Void)] = [
+        ("testFileWithParserDiagnostics", testFileWithParserDiagnostics),
+        ("testFileWithoutParserDiagnostics", testFileWithoutParserDiagnostics)
+    ]
+}
+
 extension PatternMatchingKeywordsRuleTests {
     static var allTests: [(String, (PatternMatchingKeywordsRuleTests) -> () throws -> Void)] = [
         ("testWithDefaultConfiguration", testWithDefaultConfiguration)
@@ -1437,6 +1452,12 @@ extension SwitchCaseOnNewlineRuleTests {
 
 extension SyntacticSugarRuleTests {
     static var allTests: [(String, (SyntacticSugarRuleTests) -> () throws -> Void)] = [
+        ("testWithDefaultConfiguration", testWithDefaultConfiguration)
+    ]
+}
+
+extension TestCaseAccessibilityRuleTests {
+    static var allTests: [(String, (TestCaseAccessibilityRuleTests) -> () throws -> Void)] = [
         ("testWithDefaultConfiguration", testWithDefaultConfiguration)
     ]
 }
@@ -1844,6 +1865,7 @@ XCTMain([
     testCase(OptionalEnumCaseMatchingRuleTests.allTests),
     testCase(OverriddenSuperCallRuleTests.allTests),
     testCase(OverrideInExtensionRuleTests.allTests),
+    testCase(ParserDiagnosticsTests.allTests),
     testCase(PatternMatchingKeywordsRuleTests.allTests),
     testCase(PreferSelfTypeOverTypeOfSelfRuleTests.allTests),
     testCase(PreferZeroOverExplicitInitRuleTests.allTests),
@@ -1890,6 +1912,7 @@ XCTMain([
     testCase(SwitchCaseAlignmentRuleTests.allTests),
     testCase(SwitchCaseOnNewlineRuleTests.allTests),
     testCase(SyntacticSugarRuleTests.allTests),
+    testCase(TestCaseAccessibilityRuleTests.allTests),
     testCase(TodoRuleTests.allTests),
     testCase(ToggleBoolRuleTests.allTests),
     testCase(TrailingClosureConfigurationTests.allTests),
